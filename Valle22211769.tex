@@ -1,0 +1,245 @@
+
+\documentclass[letterpaper,11pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts,amssymb,amsthm,float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.50.0.2953}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=BibTeX}
+%TCIDATA{LastRevised=Wednesday, February 18, 2026 18:50:57}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+
+\input{tcilatex}
+\renewcommand{\baselinestretch}{1.15}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5\baselineskip}
+\pretolerance=2000 \tolerance=3000
+\renewcommand{\abstractname}{Resumen}
+
+\begin{document}
+
+\title{Pr\'{a}ctica 1: Sistema Lotka-Volterra}
+\author{Ana Kamila Valle Z. Flores $\left[ 22211769\right] $ \\
+%EndAName
+Departamento de Ingenier\'{\i}a El\'{e}ctrica y Electr\'{o}nica\\
+Tecnol\'{o}gico Nacional de M\'{e}xico / Instituto Tecnol\'{o}gico de Tijuana%
+}
+\maketitle
+
+\noindent \textbf{Palabras clave: }Palabra clave 1; Palabra clave 2; Palabra
+clave 3; Palabra clave 4; Palabra clave 5.
+
+\noindent El autor debe identificar palabras clave espec\'{\i}ficas que
+representen con precisi\'{o}n la investigaci\'{o}n, se debe evitar usar t%
+\'{e}rminos generales o vagos que podr\'{\i}an aplicarse a muchos temas
+diferentes; se sugiere escribir de cuatro a siete palabras clave ordenadas
+alfab\'{e}ticamente, separadas por punto y coma, y omitir palabras que ya est%
+\'{a}n en el t\'{\i}tulo del documento.
+
+\bigskip
+
+\noindent Correo: \textbf{l22211769@tectijuana.edu.mx}
+
+\noindent \noindent Carrera: \textbf{Ingenier\'{\i}a Biom\'{e}dica }
+
+\noindent Asignatura: \textbf{Biolog\'{\i}a de Sistemas}
+
+\noindent Profesor: \href{https://biomath.xyz/}{\textbf{Dr. Paul Antonio
+Valle Trujillo}} (paul.valle@tectijuana.edu.mx)
+
+\section{Modelo matem\'{a}tico}
+
+El sistema presa-depredador de Lotka-Volterra se formula mediante las
+siguientes dos Ecuaciones Diferenciales Ordinarias (EDOs) no lineales de
+primer orden:
+
+\begin{eqnarray*}
+\dot{x} &=&\alpha x-\beta xy, \\
+\dot{y} &=&\delta xy-\gamma y,
+\end{eqnarray*}
+donde $\alpha ,\beta ,\delta ,\gamma >0$ y las condiciones iniciales $%
+x\left( 0\right) ,y\left( 0\right) \geq 0$. La variable $x\left( t\right) $
+representa a las presas [\textit{hares}], la variabele $y\left( t\right) $%
+representa a los depredadores [\textit{lynx}] y el tiempo $t$ se mide en a%
+\~{n}os.
+
+\section{An\'{a}lis de positividad}
+
+El an\'{a}lisis de positividad permite obtener conclusiones sobre la din\'{a}%
+mica de las semitrayectorias positivas $\left( \Gamma ^{+}\right) $ [secci%
+\'{o}n 2.3] para condiciones iniciales no negativas $[x\left( 0\right)
+,y\left( 0\right) \geq 0]$, para esto se debe evaluar al sistema en la
+frontera del primer cuadrante (ortante positivo) como se indica a continuaci%
+\'{o}n:
+
+\begin{eqnarray*}
+\left. \dot{x}\right\vert _{x=0} &=&\alpha \left( 0\right) -\beta \left(
+0\right) y=0, \\
+\left. \dot{y}\right\vert _{y=0} &=&\delta x\left( 0\right) -\gamma \left(
+0\right) =0,
+\end{eqnarray*}%
+por lo tanto, con base en el \textbf{Lema de Positividad }en sistemas no
+lineales [secci\'{o}n 2.6], se establece que el sistema presa-depredador de
+Lotka-Volterra tiene soluciones psoitivamente invariantes [secci\'{o}n 3.1]
+para condiciones iniciales no negativas.
+
+\section{Puntos de equilibrio}
+
+Para calcular los puntos de equilibrio es necesario igualar cada ecuaci\'{o}%
+n del sistema cero y resolver para cada una de las variables, es decir,%
+\begin{eqnarray*}
+\alpha x-\beta xy &=&0, \\
+\delta xy-\gamma y &=&0,
+\end{eqnarray*}
+
+$\func{assume}\left( \alpha ,\func{positive}\right) =\left( 0,\infty \right) 
+$
+
+$\func{assume}\left( \beta ,\func{positive}\right) =\left( 0,\infty \right) $
+
+$\func{assume}\left( \delta ,\func{positive}\right) =\left( 0,\infty \right) 
+$
+
+$\func{assume}\left( \gamma ,\func{positive}\right) =\left( 0,\infty \right) 
+$
+
+lo anterior permite establecer que los cuatro par\'{a}metros del sistema son
+positivos. Al aplicar el comando compute-solve-exact, se obtienen los
+siguientes puntos de equilibrio: 
+\begin{eqnarray*}
+\left( x_{1}^{\ast },y_{1}^{\ast }\right) &=&\left( 0,0\right) , \\
+\left( x_{1}^{\ast },y_{1}^{\ast }\right) &=&\left( \frac{\gamma }{\delta },%
+\frac{\alpha }{\beta }\right) ,
+\end{eqnarray*}%
+Nota: En algunos libros cuando el origen del espacio de estados es un
+quilibrio del sistema, se escribe asi: 
+\begin{equation*}
+\left( x_{1}^{\ast },y_{1}^{\ast }\right) =\left( 0,0\right) .
+\end{equation*}
+
+\section{Estabilidad asint\'{o}tica}
+
+Para analizar estabilidad local de los puntos de equlibrio de un sistema din%
+\'{a}mico [secciones 5.1 y 5.3] es encesario calcular la matriz jacobiana
+[secci\'{o}n 2.7], como se indica a continuaci\'{o}n:%
+\begin{equation*}
+J=\left[ 
+\begin{array}{cc}
+\frac{\partial \dot{x}}{\partial x} & \frac{\partial \dot{x}}{\partial y} \\ 
+\frac{\partial \dot{y}}{\partial x} & \frac{\partial \dot{y}}{\partial y}%
+\end{array}%
+\right] =\left[ 
+\begin{array}{cc}
+\alpha -\beta y & -\beta x \\ 
+\delta y & \delta x-y%
+\end{array}%
+\right] 
+\end{equation*}%
+Ahora, se evaluacada uno de los puntos de equilibrio calculados, primero se
+analiza $\left( x_{1}^{\ast },y_{1}^{\ast }\right) =\left( 0,0\right) ,$
+obteniendo el siguiente resultado%
+\begin{equation*}
+\left. J\right\vert _{\left( x_{1}^{\ast },y_{1}^{\ast }\right) }=\left[ 
+\begin{array}{cc}
+\alpha -\beta y & -\beta x \\ 
+\delta y & \delta x-y%
+\end{array}%
+\right] _{x=0,y=0}=\left[ 
+\begin{array}{cc}
+\alpha  & 0 \\ 
+0 & -\gamma 
+\end{array}%
+\right] ,
+\end{equation*}%
+entonces, debido a que el resultado es una matriz diagonal [secci\'{o}n
+2.7], los valores propios est\'{a}n dados por cada uno de los elementos de
+dicha diagonal, es decir,%
+\begin{eqnarray*}
+\lambda _{1} &=&\alpha , \\
+\lambda _{2} &=&-\gamma ,
+\end{eqnarray*}%
+con base en estos elementos se concluye lo siguiente: El punto de equilibrio 
+$\left( x_{1}^{\ast },y_{1}^{\ast }\right) =\left( 0,0\right) $ es inestable
+[secciones 5.1 y 5.2.3].
+
+Al evaluar el segundo equilibrio $\left( x_{2}^{\ast },y_{2}^{\ast }\right)
+=\left( \frac{\gamma }{\delta },\frac{\alpha }{\beta }\right) $, se obtiene
+el siguiente resultado%
+\begin{equation*}
+\left. J\right\vert _{\left( x_{2}^{\ast },y_{2}^{\ast }\right) }=\left[ 
+\begin{array}{cc}
+\alpha -\beta y & -\beta x \\ 
+\delta y & \delta x-y%
+\end{array}%
+\right] _{x=\frac{\gamma }{\delta },y=\frac{\alpha }{\beta }}=\left[ 
+\begin{array}{cc}
+\alpha -\beta \frac{\alpha }{\beta } & -\beta \frac{\gamma }{\delta } \\ 
+\delta \frac{\alpha }{\beta } & \delta \frac{\gamma }{\delta }-\gamma 
+\end{array}%
+\right] =\left[ 
+\begin{array}{cc}
+0 & -\beta \frac{\gamma }{\delta } \\ 
+\delta \frac{\alpha }{\beta } & 0%
+\end{array}%
+\right] ,
+\end{equation*}%
+por lo tanto , se deben calcular los valores propios mediante la siguiente
+ecuaci\'{o}n [secci\'{o}n 2.7]:%
+\begin{equation*}
+\det \left( A-\lambda I\right) =0,
+\end{equation*}%
+donde $A$ es la matriz Jacobiana evaluada en el punto de equilibrio, $%
+\lambda \epsilon \mathbf{R}$ (es un coeficiente) e $I$ es la matriz
+identidad, al sustituir se obtiene lo siguiente: 
+\begin{equation*}
+\det \left[ \left( 
+\begin{array}{cc}
+0 & -\frac{\beta \gamma }{\delta } \\ 
+\frac{\delta \alpha }{\beta } & 0%
+\end{array}%
+\right) -\lambda \left( 
+\begin{array}{cc}
+1 & 0 \\ 
+0 & 1%
+\end{array}%
+\right) \right] =0,
+\end{equation*}%
+entonces, al realizar las operaciones aritm\'{e}ticas necesarias se obtiene
+el siguiente resultado:%
+\begin{eqnarray*}
+\det \left[ \left( 
+\begin{array}{cc}
+0 & -\frac{\beta \gamma }{\delta } \\ 
+\frac{\delta \alpha }{\beta } & 0%
+\end{array}%
+\right) -\left( 
+\begin{array}{cc}
+\lambda  & 0 \\ 
+0 & \lambda 
+\end{array}%
+\right) \right]  &=&0, \\
+\det \left( 
+\begin{array}{cc}
+-\lambda  & -\frac{\beta \gamma }{\delta } \\ 
+\frac{\delta \alpha }{\beta } & -\lambda 
+\end{array}%
+\right)  &=&0, \\
+\lambda ^{2}+\alpha \gamma  &=&0,
+\end{eqnarray*}%
+y valores propios est\'{a}n dados por%
+\begin{eqnarray*}
+\lambda _{1} &=&0+\sqrt{-\alpha \gamma }=+i\sqrt{\alpha \gamma }, \\
+\lambda _{2} &=&0-\sqrt{-\alpha \gamma }=-i\sqrt{\alpha \gamma },
+\end{eqnarray*}%
+y se concluye que el punto de equilibrio es marginalmente estable,
+denominado centro [secci\'{o}n 5.2.3], por lo tanto, en una vencidad
+suficiententemente cerca del punto de equilibrio se esperan oscilasciones
+sostenidas a lo largo del tiempo $\left( t\geq 0\right) .$
+
+\end{document}
